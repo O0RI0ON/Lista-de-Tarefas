@@ -1,0 +1,1 @@
+Esse é um projeto simples que fiz para colocar em prática meus conhecimento de JavaScript, onde tive que me superar um pouco mais, já que eu não sabia praticamente nada dessa linguagem.

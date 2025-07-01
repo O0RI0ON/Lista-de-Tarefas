@@ -67,11 +67,53 @@ button:hover {
 }
 
 ul li {
-    list-style-type: none;
-    padding: 20px;
+    list-style: none;
+    padding: 10px 10px 0 30px;
     background-color: #fff;
     border-radius: 10px;
-    font-size: 20px;
-    width: 500px;
+    font-size: 26px;
+    font-weight: 500;
+    width: 700px;
     margin-bottom: 20px;
-};
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.remover {
+    background-color: #140024;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    width: 100px;
+}
+.remover:hover {
+    background-color: #140024a9;
+}
+.editar {
+    background-color: #140024;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    width: 100px;
+}
+.editar:hover {
+    background-color: #7c00e2a9;
+}
+
+.botao_lista {
+    background-color: #770c0c;
+}
+
+.botao_lista:hover {
+    background-color: #770c0ca9;
+    color: #F4F0EA;
+}

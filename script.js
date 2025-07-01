@@ -1,27 +1,70 @@
-function gerarTarefa() {
-    //Pega o valor inserido no input
-    const inputTarefa = document.getElementById('inputTarefa').value.trim();
+let tarefas = []
 
-    //Cria uma variavel para mensagem
+function gerarTarefa() {
+    const inputTarefa = document.getElementById('inputTarefa').value.trim()
+
     let mensagem = document.getElementById('mensagem')
 
-    if (inputTarefa == "") {
-        // Se o input nao tiver nenhum valor, retorna uma mensagem de erro
-        mensagem.textContent = 'Você precisa adicionar uma tarefa para que ela apareça!';
-        // Muda a cor da mensagem para vermelho
-        mensagem.style.color = 'red';
+    if (inputTarefa == '') {
+
+        mensagem.textContent = 'Você precisa adicionar uma tarefa para que ela apareça!'
+
+        mensagem.style.color = 'red'
     } else {
-        //Cria uma mensagem falando que a tarefa foi adicionada
-        mensagem.textContent = 'Tarefa adicionada com sucesso!';
-        // Muda a cor da mensagem para verde
+
+        mensagem.textContent = 'Tarefa adicionada com sucesso!'
+
         mensagem.style.color = 'green'
-        //Pega a lista de tarefas e adiciona um item nela com o valor do input
-        const itemTarefa = document.createElement('li');
-        itemTarefa.textContent = inputTarefa;
-        const listaTarefas = document.getElementById('listaTarefas');
-        listaTarefas.appendChild(itemTarefa);
+
+        tarefas.push(inputTarefa)
     }
 
-    //Limpa o input após adicionar a tarefa
-    document.getElementById('inputTarefa').value = '';
+    document.getElementById('inputTarefa').value = ''
+
+    renderizarTarefas()
+}
+
+function renderizarTarefas() {
+    const listaTarefas = document.getElementById('listaTarefas')
+    listaTarefas.innerHTML = ''
+
+    for (let i = 0; i < tarefas.length; i++) {
+        const novaTarefa = document.createElement('li')
+        novaTarefa.textContent = tarefas[i]
+
+        let botaoRemover = document.createElement('button')
+        botaoRemover.className = 'remover'
+        botaoRemover.textContent = 'Remover'
+        botaoRemover.onclick = () => removerTarefa(i)
+
+        let botaoEditar = document.createElement('button')
+        botaoEditar.className = 'editar'
+        botaoEditar.textContent = 'Editar'
+        botaoEditar.onclick = () => editarTarefa(i)
+
+        novaTarefa.appendChild(botaoEditar)
+        novaTarefa.appendChild(botaoRemover)
+        listaTarefas.appendChild(novaTarefa)
+    }
+}
+
+function removerTarefa(i) {
+    tarefas.splice(i, 1)
+    renderizarTarefas()
+    mensagem.textContent = 'Tarefa removida com sucesso!'
+    mensagem.style.color = 'yellow'
+}
+
+function editarTarefa(i) {
+    let tarefaEditada = prompt('Edite a tarefa:').trim()
+    if (tarefaEditada !== '') {
+        tarefas[i] = tarefaEditada
+        renderizarTarefas()
+    }
+}
+
+function limparLista() {
+    tarefas.length = 0
+    renderizarTarefas()
+    mensagem.textContent = 'Lista limpa com sucesso!'
 }
